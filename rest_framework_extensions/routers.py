@@ -1,7 +1,13 @@
 # -*- coding: utf-8 -*-
 from distutils.version import StrictVersion
+
+import django
 from django.core.exceptions import ImproperlyConfigured
-from django.core.urlresolvers import NoReverseMatch
+
+if django.VERSION < (2, 0):
+    from django.core.urlresolvers import NoReverseMatch
+else:
+    from django.urls import NoReverseMatch
 
 import rest_framework
 from rest_framework.routers import (
